@@ -1,9 +1,8 @@
+var t = new Test.Base();
+t.plan(4);
+
 Class('Foo.Bar', function() {
 });
-
-var t = new Test.Base();
-
-t.plan(4);
 
 t.ok(Foo.Bar, 'Foo.Bar exists');
 t.is(Foo.Bar.global, this, 'Global pointer is good');
