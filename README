@@ -1,7 +1,7 @@
 NAME
     Class - A Lightweight JavaScript Class System
 
-SYSNOPSIS
+SYNOPSIS
         Class('Foo.Bar', function() {
             ... your code here ...
         });
@@ -120,11 +120,11 @@ OPTIONS
                 var klass = this;
                 ...
 
-        The -inc is a comma separated list of values. Some of these values
-        are special:
+        The -inc is a comma separated list of values. A couple of these
+        values are special:
 
             - this: A pointer to the current class object.
-            - prototype: A pointer to the surrent class prototype object.
+            - proto: A pointer to the surrent class prototype object.
 
         Anything else is a global variable.
 
@@ -132,10 +132,10 @@ CLASS OBJECT PROPERTIES
     Your class (pointed to by 'this' in your wrapper function) has a few
     handy properties:
 
-  this.name
+  this.className
     The name of your class. ('Foo.Bar')
 
-  this.base
+  this.baseClassName
     The name of your base class. ('Foo')
 
   this.global
