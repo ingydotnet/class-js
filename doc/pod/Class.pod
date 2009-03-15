@@ -152,7 +152,7 @@ A function that increments the expected global count for -strict, and then retur
 
 =head2 this.isa(parentClassName)
 
-Sets up inheritance manually.
+This sets up inheritance manually.
 
 =head1 AUTHOR
 
