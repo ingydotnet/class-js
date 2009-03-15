@@ -134,11 +134,11 @@ Anything else is a global variable.
 
 Your class (pointed to by 'this' in your wrapper function) has a few handy properties:
 
-=head2 this.name
+=head2 this.className
 
 The name of your class. ('Foo.Bar')
 
-=head2 this.base
+=head2 this.baseClassName
 
 The name of your base class. ('Foo')
 
