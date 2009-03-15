@@ -1,10 +1,8 @@
-=encoding utf8
-
 =head1 NAME
 
 Class - A Lightweight JavaScript Class System
 
-=head1 SYSNOPSIS
+=head1 SYNOPSIS
 
     Class('Foo.Bar', function() {
         ... your code here ...
