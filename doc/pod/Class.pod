@@ -121,10 +121,10 @@ Could be written completely in code like this:
         var klass = this;
         ...
 
-The -inc is a comma separated list of values. Some of these values are special:
+The -inc is a comma separated list of values. A couple of these values are special:
 
     - this: A pointer to the current class object.
-    - prototype: A pointer to the surrent class prototype object.
+    - proto: A pointer to the surrent class prototype object.
 
 Anything else is a global variable.
 
