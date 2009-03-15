@@ -1,0 +1,7 @@
+# This file is used to override the following defaults:
+
+index_title: JavaScript Class Testing
+import_libs:
+  - ../lib/Class.js
+template_include_path:
+  - template
