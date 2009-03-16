@@ -14,6 +14,21 @@ JavaScript has no standard way to define a "class". (Even though JavaScript is p
 
 Class.js defines a very minimal set of structure and helpers without forcing you to change your coding style drastically. It's goal is to work with many styles of coding but also to give a clear way to to the basic best practices.
 
+Class.js provides these simple, useful features:
+
+    * Insertion of your class (Foo.Bar.Baz) into the global namespace.
+    * A contained scope for your class.
+    * Single inheritance.
+    * Declaration of local class variables. Like '$' for jQuery.
+    * A way to define instance methods.
+    * A clean way to call 'super' methods.
+    * Strict evaluation of your code. New global variables raise an exception.
+      * A safe way to introduce global variables if you need to.
+      * A way to disable strict evaluation altogether.
+    * 'this' is a pointer to your class object within the scope of your class.
+    * 'this.global' is a portable replacement for 'window'.
+    * Class object contains helpful properties like: className & baseclassName.
+
 =head1 AN EXAMPLE CLASS
 
 Here is a more complete example with full explanation:
@@ -28,14 +43,15 @@ Here is a more complete example with full explanation:
     // - The 'Foo' in parentheses is the name of the parent class. This is the
     //   way to declare inheritance.
     // - The remaining parameters are options that begin with a '-'.
-    // - '-strict' makes sure global variables aren't accidentally defiend. It
+    // - '-strict' makes sure global variables aren't accidentally defined. It
     //   is described in detail below.
     // - '-inc' is a list of variables that are passed to the wrapper function
-    //   as a clean way to defined globals.
+    //   as a clean way to defined local class variables.
     // - The function here is a class wrapper. It provides the lexical scope
     //   for the class. This function is called immediately after the class is
     //   created.
-    // - The '$' is the jQuery constructor, which was declared my -inc.
+    // - The '$' is the jQuery constructor, which was declared by -inc.
+
     Class('Foo.Bar(Foo) -strict -inc=jQuery', function($) {
 
     // - As a style convention, the first level under the wrapper function is
@@ -43,35 +59,43 @@ Here is a more complete example with full explanation:
     // - 'this' (in the wrapper function context) is a pointer to the new
     //   class object being defined.
     // - Here we use it to define 
+
     this.version = '1.0.0';
 
     // - Or define a class function.
+
     this.cleanup = function() { ... };
 
     // - 'this.global' is a pointer to the global namespace. It is more
     //   portable than 'global'.
+
     var myClass = this.global.Foo.Bar;
 
     // - Any functions you define in the class are automatically private to
     // the scope of the class wrapper function. Yay!
+
     function private1() {
     }
 
     // - Any variables declared with 'var' are lexical to the wrapper class.
     //   Yay!
+
     var foo = 123;
 
     // - Any variables declared without 'var' are accidentally global. Boo!
     //   But -strict will catch these for you. Yay!
+
     bar = 456;
 
     // - Sometimes you really want to add a global variable. No problem. Just
     //   declare your intent and -strict will be happy. Yay!
+
     this.addGlobal().baz = 789;
 
     // - 'this.extend' is a simple way to add methods and properties to your
     //   class. Technically they are added to your class prototype, so they
     //   become instance properties. 'extend' can be called more than once.
+
     this.extend({
         method1: function() { ... },
         method2: function() { ... }
@@ -79,11 +103,13 @@ Here is a more complete example with full explanation:
 
     // - You can also add methods and properties directly, of course, doing
     //   something like this:
+
     this.prototype.method3 = function() { ... };
 
     // - Don't forget to close the wrapper function and the call to Class.
     //   You may want to add a comment so this line makes more sense to casual
     //   readers.
+
     }); // END Foo.Bar
 
 =head1 OPTIONS
@@ -131,6 +157,13 @@ Anything else is a global variable.
 =head1 CLASS OBJECT PROPERTIES
 
 Your class (pointed to by 'this' in your wrapper function) has a few handy properties:
+
+=head2 this.superFunc('methodName')
+
+Return the super class method as a function reference. Typically call it like
+this:
+
+    this.superFunc('method').apply(this, arguments);
 
 =head2 this.className
 
