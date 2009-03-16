@@ -12,4 +12,3 @@ tests:
 
 clean:
 	@make -C tests $@
-
